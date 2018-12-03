@@ -1,5 +1,5 @@
 # Alpine Real-Time Sound Visualizer
-live demo at https://lairdkruger.github.io/Alpine/ 
+live demo at https://lairdkruger.github.io/Alpine/
  
 - runs in chrome
 - a powerful computer (CPU) is recommended to minimise latency between the sound and the visuals
