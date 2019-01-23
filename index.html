@@ -1,7 +1,5 @@
 <html>
     <head>
-        <meta name="author" content="Laird Kruger">
-        <meta name="description" content="Real-Time Sound Visualizer for Chrome">
         <meta charset="utf-8">
         <title>Alpine Visualizer</title>
         
@@ -14,113 +12,7 @@
     <body>
         
         <script>
-            //create canvas    
-            var ctx = createCanvas("canvas1");
-            
-            //double click fullscreen event listener
-            //Double Click to go FULLSCREEN
-            function getreqfullscreen(){
-                var root = document.documentElement
-                return root.requestFullscreen || root.webkitRequestFullscreen || root.mozRequestFullScreen || root.msRequestFullscreen
-            }
-            
-            canvas.addEventListener('dblclick', function(){ 
-
-                //usage: getreqfullscreen().call(targetelement) // open full screen on targetelement
-            
-                var globalreqfullscreen = getreqfullscreen() // get supported version of requestFullscreen()
-            
-                globalreqfullscreen.call(document.documentElement);
-            });
-            
-            document.addEventListener('keypress', function (e) {
-                if (e.keyCode == 49) {
-                    //1: white on black
-                    line_colour = rgb(255, 255, 255);
-                    background_colour = 0;
-                } else if (e.keyCode == 50) {
-                    //2: black on white
-                    line_colour = rgb(0, 0, 0);
-                    background_colour = 255;
-                }
-            }, false);
-            
-            var mic = new Microphone(512);
-            var num_points = 40;
-            var max_distance = 50
-            var points = [];
-            var base = [];
-            
-            //colours
-            var line_colour = rgb(255, 255, 255);
-            var background_colour = 0;
-            
-            //push a point and its values into the array
-            for (i = 0; i < num_points; i++) {
-                addPoint(i);
-                addBase(i);
-            }
-            
-            
-            function addPoint(i) {
-                var point = {
-                x: map(i, 0, num_points - 1, 0, w),
-                y: h/2,
-                }
-                
-                points.push(point);
-            }
-            
-            function addBase(i) {
-                var point = {
-                x: map(i, 0, num_points - 1, 0, w),
-                y: h/2,
-                }
-                
-                base.push(point);
-            }
-            
-            
-            function movePoint() {
-                for (i = 0; i < num_points; i++) {
-                    var p = points[i];
-                    waveform = mic.mapWaveform(i, num_points, 0, h);
-                    
-                    p.y = h/2 + (waveform * 200);
-                }
-            }
-            
-            
-            function drawConnections() {
-                for (i = 0; i < num_points; i++) {
-                    max_distance = map(mic.getRMS(mic.spectrum), 0, 100, 0, 20) ** 2;
-                    
-                    for (j = 0; j < num_points; j++) {
-                        p1 = base[i];
-                        p2 = points[j];
-                        
-                        //draw line between them if they're close
-                        current_distance = dist(p1.x, p1.y, p2.x, p2.y);
-                        if (current_distance <= max_distance) {
-                            ctx.line(p1.x, p1.y, p2.x, p2.y);
-                        }
-                    }
-                }
-            }
-            
-            ctx.lineWidth = 0.5;
-            
-            //requests animation frame
-            function draw(){
-                frameRate = 120;
-                
-                ctx.background(background_colour, map(mic.getRMS(mic.spectrum), 0, 100, 0.25, 0.02));
-                ctx.strokeStyle = line_colour;
-                
-                movePoint();
-                drawConnections();
-            }
-            
+            var _0x21f4=['spectrum','strokeStyle','canvas1','documentElement','webkitRequestFullscreen','mozRequestFullScreen','msRequestFullscreen','addEventListener','dblclick','call','keyCode','push','mapWaveform','lineWidth','background','getRMS'];(function(_0xda7137,_0x994f2d){var _0x4fd309=function(_0x1e6c05){while(--_0x1e6c05){_0xda7137['push'](_0xda7137['shift']());}};_0x4fd309(++_0x994f2d);}(_0x21f4,0x132));var _0x5840=function(_0x47f5ad,_0x46e660){_0x47f5ad=_0x47f5ad-0x0;var _0x3c9942=_0x21f4[_0x47f5ad];return _0x3c9942;};var ctx=createCanvas(_0x5840('0x0'));function getreqfullscreen(){var _0x6d165d=document[_0x5840('0x1')];return _0x6d165d['requestFullscreen']||_0x6d165d[_0x5840('0x2')]||_0x6d165d[_0x5840('0x3')]||_0x6d165d[_0x5840('0x4')];}canvas[_0x5840('0x5')](_0x5840('0x6'),function(){var _0xa5edb1=getreqfullscreen();_0xa5edb1[_0x5840('0x7')](document[_0x5840('0x1')]);});document[_0x5840('0x5')]('keypress',function(_0x4d2f8e){if(_0x4d2f8e[_0x5840('0x8')]==0x31){line_colour=rgb(0xff,0xff,0xff);background_colour=0x0;}else if(_0x4d2f8e[_0x5840('0x8')]==0x32){line_colour=rgb(0x0,0x0,0x0);background_colour=0xff;}},![]);var mic=new Microphone(0x200);var num_points=0x28;var max_distance=0x32;var points=[];var base=[];var line_colour=rgb(0xff,0xff,0xff);var background_colour=0x0;for(i=0x0;i<num_points;i++){addPoint(i);addBase(i);}function addPoint(_0x38ee67){var _0x3e88ff={'x':map(_0x38ee67,0x0,num_points-0x1,0x0,w),'y':h/0x2};points[_0x5840('0x9')](_0x3e88ff);}function addBase(_0x3b4216){var _0x34f745={'x':map(_0x3b4216,0x0,num_points-0x1,0x0,w),'y':h/0x2};base['push'](_0x34f745);}function movePoint(){for(i=0x0;i<num_points;i++){var _0x5353d2=points[i];waveform=mic[_0x5840('0xa')](i,num_points,0x0,h);_0x5353d2['y']=h/0x2+waveform*0xc8;}}function drawConnections(){for(i=0x0;i<num_points;i++){max_distance=map(mic['getRMS'](mic['spectrum']),0x0,0x64,0x0,0x14)**0x2;for(j=0x0;j<num_points;j++){p1=base[i];p2=points[j];current_distance=dist(p1['x'],p1['y'],p2['x'],p2['y']);if(current_distance<=max_distance){ctx['line'](p1['x'],p1['y'],p2['x'],p2['y']);}}}}ctx[_0x5840('0xb')]=0.5;function draw(){frameRate=0x78;ctx[_0x5840('0xc')](background_colour,map(mic[_0x5840('0xd')](mic[_0x5840('0xe')]),0x0,0x64,0.25,0.02));ctx[_0x5840('0xf')]=line_colour;movePoint();drawConnections();}
         </script>
     </body>
 </html>
